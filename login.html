@@ -85,13 +85,13 @@
         sessionStorage.setItem("userEmail", user.email);
         if (user.email === "hannaliisavilms@gmail.com") {
           window.location.href =
-            "file:///Users/hanna-liisavilms/Desktop/foodie/addRecipe.html";
+            "https://hannalvilms.github.io/foodie/addRecipe.html";
         } else {
           signOut(auth)
             .then(() => {
               // Sign-out successful.
               location.assign(
-                "file:///Users/hanna-liisavilms/Desktop/foodie/index.html"
+                "https://hannalvilms.github.io/foodie/index.html"
               );
             })
             .catch((error) => {

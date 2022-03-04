@@ -30,7 +30,7 @@ function GetFileName(file) {
 }
 
 if (userEmail != "hannaliisavilms@gmail.com") {
-  location.assign("file:///Users/hanna-liisavilms/Desktop/foodie/index.html");
+  location.assign("https://hannalvilms.github.io/foodie/index.html");
 }
 
 var input = document.createElement("input");
@@ -113,7 +113,7 @@ function logout(signOut, auth) {
       // Sign-out successful.
       alert("logged out");
       location.assign(
-        "file:///Users/hanna-liisavilms/Desktop/foodie/index.html"
+        "https://hannalvilms.github.io/foodie/index.html"
       );
     })
     .catch((error) => {

@@ -115,7 +115,7 @@ const detectMenu = function (navId, adminMenu) {
         if (e.keyCode === 13) {
           e.preventDefault();
           sessionStorage.setItem("searchedItem", recipeSearchInput.value);
-          location.assign("file:///Users/hanna-liisavilms/Desktop/foodie/recipes.html");
+          location.assign("https://hannalvilms.github.io/foodie/recipes.html");
         }
       });
     } else {
