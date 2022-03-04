@@ -1,0 +1,855 @@
+$mainFont: "Golden";
+$secondaryFont: "Holipop";
+$mainColor: #b79e79;
+$secondaryColor: #edece8;
+$text: #f2f2f2;
+$placeholder: #86765f;
+$mobileMenu: rgba(88, 72, 50, 0.95);
+$header: rgba(88, 72, 50, 0.55);
+$textBg: rgba(88, 72, 50, 0.75);
+$lightShadow: 0 0 7px 0 rgba(77, 77, 77, 0.3);
+$borderRadius: 5px;
+
+@font-face {
+  font-family: $mainFont;
+  src: url("../../fonts/Golden.ttf");
+}
+@font-face {
+  font-family: $secondaryFont;
+  src: url("../../fonts/Holipop.ttf");
+}
+@keyframes fadein {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@mixin mainFontAndColor($fontSize) {
+  font-size: $fontSize;
+  font-family: $mainFont;
+  color: $text;
+}
+@mixin flexAndDireciton($direction) {
+  display: flex;
+  flex-direction: $direction;
+}
+@mixin wave($color) {
+  width: 100% !important;
+  height: 20vh !important;
+  position: absolute;
+  bottom: 0;
+  background: transparent;
+  fill: $color;
+}
+@mixin loginRegisterBtn {
+  width: 40%;
+  border: none;
+  border-radius: 5px;
+  color: $mainColor;
+  box-shadow: $lightShadow;
+}
+@mixin selectInput($width) {
+  width: $width;
+  border-radius: 50px;
+  border: none;
+  background-color: $secondaryColor;
+  padding: 5px;
+  outline: none;
+  height: 35px;
+  padding-left: 13px;
+}
+@mixin selectInputText {
+  font-family: $mainFont;
+  color: $placeholder;
+  font-size: 20px;
+}
+@mixin imgWidthBorderRadius($width) {
+  border-radius: $borderRadius !important;
+  width: $width;
+}
+@mixin inputBorders() {
+  border: none;
+  border-radius: $borderRadius;
+  box-shadow: $lightShadow;
+  outline: none;
+}
+.to-fade-in {
+  opacity: 0;
+  &.fadein {
+    animation: fadein 4s forwards;
+  }
+}
+.rec-fade {
+  animation: fadein 2s forwards;
+}
+//Header
+.header {
+  height: 120vh;
+  position: relative;
+  video {
+    position: absolute;
+    width: 100vw;
+    height: 120vh;
+    object-fit: cover;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    z-index: -1;
+  }
+  .header-text {
+    width: 60%;
+    float: right;
+    height: 120vh;
+    background-color: $header;
+    h1 {
+      @include mainFontAndColor(7em);
+      padding: 30vh 40px 20vh 10vw;
+      text-align: right;
+    }
+  }
+}
+
+//Logo
+#logo {
+  @include mainFontAndColor(50px);
+  text-decoration: none;
+}
+.beige-logo-menu {
+  #logo {
+    color: $mainColor;
+  }
+  a:first-child {
+    color: $mainColor !important;
+  }
+}
+//Navbar
+nav {
+  display: flex;
+  justify-content: space-between;
+  position: absolute;
+  width: 100vw;
+  padding: 40px;
+}
+.menu-items {
+  display: flex;
+  width: 50%;
+  justify-content: space-between;
+  a {
+    font-size: 40px;
+    font-family: $secondaryFont;
+    color: $text !important;
+    text-decoration: none;
+  }
+}
+//Mobile menu
+#menu-items-mobile {
+  display: none;
+}
+.hamburger {
+  z-index: 10;
+  top: 40px;
+  right: 40px;
+  position: absolute;
+}
+.mobile-nav {
+  padding: 0 !important;
+  h3 {
+    padding: 40px;
+  }
+}
+.hamburger-inner,
+.hamburger-inner::before,
+.hamburger-inner::after {
+  background-color: $text !important;
+}
+#menu-items-mobile.is-active {
+  @include flexAndDireciton(column);
+  z-index: 1;
+  height: 120vh;
+  width: 60vw;
+  align-items: center;
+  background-color: $mobileMenu;
+  padding-top: 20vh;
+  overflow: hidden;
+  position: fixed;
+  right: 0;
+  a {
+    font-size: 60px;
+    font-family: $secondaryFont;
+    color: $text !important;
+    text-decoration: none;
+  }
+}
+#search.fade {
+  opacity: 0;
+}
+#search {
+  opacity: 1;
+  transition: opacity 1s;
+  position: absolute;
+  right: 20px;
+  top: 100px;
+  input {
+    @include selectInput(25vw);
+    @include selectInputText();
+    padding-left: 15px;
+    padding-top: 10px;
+    box-shadow: $lightShadow;
+  }
+  input::placeholder {
+    @include selectInputText();
+  }
+}
+//Front page recent recipes
+#recent-recipes {
+  @include flexAndDireciton(row);
+  justify-content: space-around;
+  text-align: center;
+  width: 100%;
+  margin: 5vh auto 60vh;
+}
+.recent-recipes {
+  width: 100vw;
+  min-height: 120vh;
+  .recent-title {
+    width: 100%;
+    position: absolute;
+    height: 20%;
+  }
+  h2 {
+    @include mainFontAndColor(80px);
+    margin-top: -13vh;
+    width: 500px;
+    margin-left: 15%;
+  }
+}
+.recipe0,
+.recipe1,
+.recipe2 {
+  img {
+    border-radius: $borderRadius;
+    object-fit: cover;
+  }
+  h3 {
+    @include mainFontAndColor(auto);
+    margin-top: 20px;
+  }
+}
+.recipe0 img {
+  width: 300px;
+  height: 400px;
+  margin-top: 15vh;
+}
+.recipe1 img {
+  width: 300px;
+  height: 400px;
+  margin-top: 28vh;
+}
+.recipe2 img {
+  width: 400px;
+  height: 600px;
+  margin-top: -3vh;
+}
+//Waves
+.wave {
+  @include wave($mainColor);
+}
+.footer-wave {
+  @include wave($secondaryColor);
+}
+
+#login,
+#register,
+#about {
+  background-color: $mainColor;
+  min-height: 100vh;
+}
+#add-recipe,
+#all-recipes,
+#recipe,
+#about,
+.recent-recipes {
+  background-color: $mainColor;
+  position: relative;
+  min-height: 100vh;
+}
+//Login and register
+.login,
+.register {
+  @include flexAndDireciton(column);
+  width: 30% !important;
+  margin: 30vh auto !important;
+  font-family: $mainFont;
+  h3 {
+    text-align: left;
+    color: $text;
+  }
+  input {
+    @include inputBorders();
+    background-color: $secondaryColor;
+    padding: 5px;
+    margin: 5px 0 10px;
+  }
+  input::placeholder {
+    color: $placeholder;
+  }
+  button {
+    @include loginRegisterBtn();
+    padding-top: 4px;
+  }
+}
+//Admin add recipe
+.add-recipe {
+  @include flexAndDireciton(row);
+  width: 100%;
+  margin: -10vh 6vh 20vh;
+  .inputs {
+    width: 40%;
+    margin-right: 30px;
+  }
+  .image {
+    width: 40%;
+    img {
+      @include imgWidthBorderRadius(100%);
+    }
+  }
+  h3 {
+    @include mainFontAndColor(3em);
+    padding-bottom: 5vh;
+  }
+  label {
+    @include mainFontAndColor(auto);
+    margin-bottom: 5px;
+  }
+  input,
+  textarea {
+    @include inputBorders();
+  }
+  input::placeholder,
+  textarea::placeholder {
+    padding-left: 10px;
+  }
+  .add-recipe-textarea,
+  .add-recipe-title {
+    @include flexAndDireciton(column);
+    padding-bottom: 30px;
+  }
+  .add-recipe-checkbox {
+    @include flexAndDireciton(row);
+    align-items: center;
+    label {
+      padding-right: 10px;
+    }
+  }
+  .add-recipe-checkboxs {
+    @include flexAndDireciton(row);
+    justify-content: space-between;
+  }
+  button:first-of-type {
+    margin-top: 0 !important;
+    margin-bottom: 20px !important;
+  }
+  button {
+    @include loginRegisterBtn;
+    padding: 4px 0 4px;
+    margin: 20px 0 10vh 0;
+  }
+}
+//Footer logo
+.footer-logo {
+  position: absolute;
+  font-size: 50px;
+  color: $mainColor;
+  font-family: $mainFont;
+  bottom: 0;
+  margin-left: 15%;
+  margin-bottom: 2%;
+  text-align: center;
+}
+
+//Recipe page
+#recipe-details {
+  margin-top: -10vh;
+  .recipe-img-title {
+    @include flexAndDireciton(row);
+    .recipe-title-ingredients {
+      margin-top: 10vh;
+      @include flexAndDireciton(column);
+      h1 {
+        @include mainFontAndColor(120px);
+        word-break: break-all;
+      }
+      p {
+        @include mainFontAndColor(25px);
+      }
+      h1,
+      p {
+        margin-left: 30px;
+        text-align: justify;
+      }
+    }
+    img {
+      object-fit: cover;
+      border-radius: 900px;
+      box-shadow: $lightShadow;
+      padding: 0;
+      animation: fadein 3s;
+    }
+  }
+  .recipe-description {
+    padding: 20px;
+    box-shadow: $lightShadow;
+    margin: 10vh auto 30vh;
+    h2 {
+      @include mainFontAndColor(60px);
+    }
+    p {
+      @include mainFontAndColor(20px);
+      text-align: justify;
+    }
+  }
+}
+
+//Recipes page
+#all-recipes-list,
+#searched-recipes-list {
+  @include flexAndDireciton(row);
+  flex-wrap: wrap;
+  width: 100%;
+  margin: 10vh auto;
+  .recipe {
+    img {
+      @include imgWidthBorderRadius(90%);
+      height: 100%;
+      object-fit: cover;
+    }
+    h3 {
+      @include mainFontAndColor(auto);
+      position: absolute;
+      bottom: 0;
+      width: 90%;
+      background-color: $textBg;
+      text-align: center;
+      margin-bottom: 0;
+      border-radius: 0 0 5px 5px;
+      padding: 20px;
+    }
+  }
+}
+.recipe,
+.searched-rec {
+  @include flexAndDireciton(column);
+  align-items: center;
+  height: 400px;
+  position: relative;
+  margin-bottom: 5vh;
+}
+.all-recipes {
+  margin: 25vh auto !important;
+  h1 {
+    @include mainFontAndColor(100px);
+    width: 25%;
+  }
+  .all-recipes-title-check {
+    @include flexAndDireciton(row);
+    justify-content: space-between;
+  }
+  .all-recipes-sort,
+  .all-recipes-search {
+    @include flexAndDireciton(row);
+    align-items: center;
+    p {
+      margin-bottom: 0;
+      @include mainFontAndColor(30px);
+      margin-right: 5px;
+    }
+  }
+  .all-recipes-sort {
+    margin-right: 1vw;
+    select {
+      @include selectInput(10vw);
+      @include selectInputText();
+      appearance: none;
+    }
+  }
+  .all-recipes-search {
+    input {
+      @include selectInput(30vw);
+      @include selectInputText();
+      padding-left: 15px;
+      padding-top: 10px;
+    }
+    input::placeholder {
+      @include selectInputText();
+    }
+    button.none {
+      display: none;
+    }
+    button.shown {
+      height: 30px;
+      width: 40px;
+      border: none;
+      border-radius: 10px;
+      margin-left: 10px;
+      color: #86765f;
+      font-size: 30px;
+      padding: 0 0 5px 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: $secondaryColor;
+    }
+  }
+  .all-recipes-sort-search {
+    @include flexAndDireciton(row);
+    justify-content: space-between;
+    width: 100%;
+  }
+  .all-recipes-sorting {
+    @include flexAndDireciton(column);
+    justify-content: center;
+    width: 55%;
+    .add-recipe-checkbox {
+      @include flexAndDireciton(row);
+      align-items: center;
+      label {
+        @include mainFontAndColor(20px);
+        padding-right: 10px;
+      }
+      input {
+        @include inputBorders();
+      }
+    }
+    .add-recipe-checkboxs {
+      @include flexAndDireciton(row);
+      margin-top: 20px;
+      justify-content: space-between;
+    }
+  }
+}
+//About section
+.about {
+  @include flexAndDireciton(row);
+  margin: -5vh auto 25vh;
+  width: 70% !important;
+  h1 {
+    @include mainFontAndColor(80px);
+    width: 25%;
+  }
+  p {
+    @include mainFontAndColor(auto);
+    text-align: justify;
+  }
+  img {
+    @include imgWidthBorderRadius(40vh);
+    margin-right: 5vh;
+  }
+}
+//checkbox styling
+input[type="checkbox"] {
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+input[type="checkbox"] {
+  position: relative;
+  width: 1em;
+  height: 1em;
+  vertical-align: -2px;
+  background-color: $secondaryColor;
+  color: $secondaryColor !important;
+  font-family: $mainFont;
+}
+
+input[type="checkbox"]::before {
+  content: "✖";
+  background-color: $placeholder;
+  position: absolute;
+  font-size: 13px;
+  visibility: hidden;
+  width: 100%;
+  height: 100%;
+  border-radius: $borderRadius;
+  padding: 0 3px;
+}
+
+input[type="checkbox"]:checked::before {
+  visibility: visible;
+}
+
+//Screens bigger than 1400px
+@media screen and (min-width: 1400px) {
+  #recent-recipes {
+    width: 85%;
+  }
+}
+@media screen and (max-width: 1200px) {
+  .recipe0 img {
+    width: 22vw;
+    height: 350px;
+    margin-top: 10vh;
+  }
+  .recipe1 img {
+    width: 22vw;
+    height: 350px;
+    margin-top: 25vh;
+  }
+  .recipe2 img {
+    width: 30vw;
+    height: 500px;
+    margin-top: -3vh;
+  }
+}
+//Screens smaller than 991px
+@media screen and (max-width: 991px) {
+  .header-text h1 {
+    font-size: 6em !important;
+  }
+  #recent-recipes {
+    margin: auto auto 40vh;
+  }
+  .recent-recipes {
+    min-height: 70vh;
+    h2 {
+      font-size: 2.5em;
+      width: 200px;
+      margin-left: 9%;
+    }
+  }
+
+  .all-recipes {
+    select,
+    input::placeholder {
+      font-size: 17px !important;
+      padding-left: 5px !important;
+      padding-top: 7px !important;
+    }
+    input {
+      padding-left: 10px !important;
+      padding-top: 6px !important;
+    }
+  }
+  .recipe0 img {
+    width: 22vw;
+    height: 300px;
+    margin: 10vh 5px 0;
+  }
+  .recipe1 img {
+    width: 22vw;
+    height: 300px;
+    margin: 25vh 5px 0;
+  }
+  .recipe2 img {
+    width: 30vw;
+    height: 400px;
+    margin: 3vh 5px 0;
+  }
+  .recipe-img-title {
+    h1 {
+      font-size: 60px;
+    }
+    p {
+      font-size: 20px;
+    }
+  }
+  .recipe-description h2 {
+    font-size: 50px;
+  }
+  #about {
+    position: absolute;
+    .about {
+      margin: 0 auto 25vh;
+      width: 100% !important;
+    }
+  }
+}
+//Screens smaller than 767px
+@media screen and (max-width: 767px) {
+  .header-text h1 {
+    font-size: 4em !important;
+  }
+  #recent-recipes {
+    margin: auto auto 2vh;
+  }
+  .recipe0 img {
+    width: 22vw;
+    height: 250px;
+    margin: 5vh 5px 0;
+  }
+  .recipe1 img {
+    width: 22vw;
+    height: 250px;
+    margin: 20vh 5px 0;
+  }
+  .recipe2 img {
+    width: 30vw;
+    height: 350px;
+    margin-top: 2vh;
+  }
+  .recipe0,
+  .recipe1,
+  .recipe2 {
+    h3 {
+      font-size: 20px;
+    }
+  }
+  .all-recipes {
+    .all-recipes-title-check {
+      @include flexAndDireciton(column);
+    }
+    .all-recipes-sorting {
+      width: 100%;
+    }
+    .all-recipes-sort select {
+      width: 20vw;
+    }
+  }
+
+  #all-recipes-list,
+  #searched-recipes-list {
+    margin: 5vh auto;
+  }
+  .recipe-img-title {
+    @include flexAndDireciton(column-reverse);
+    img {
+      margin: 20px auto 0;
+      width: 80vw;
+    }
+  }
+  .add-recipe {
+    margin: 0 auto 20vh;
+    .add-recipe-checkboxs {
+      @include flexAndDireciton(column);
+    }
+  }
+  .about {
+    img {
+      width: 40vw;
+    }
+    h1 {
+      font-size: 60px;
+    }
+  }
+  .login,
+  .register {
+    width: 70% !important;
+  }
+}
+//Screens smaller than 576px
+@media screen and (max-width: 576px) {
+  .hamburger {
+    z-index: 100;
+    right: 20px;
+  }
+  #menu-items-mobile.is-active {
+    width: 100vw;
+  }
+  .header-text {
+    width: 100% !important;
+    h1 {
+      padding: 30vh 40px 20vh 30vw;
+    }
+  }
+  #recent-recipes {
+    margin-bottom: 20vh;
+    margin-top: 5vh;
+    .recent-recipes h2 {
+      font-size: 45px;
+    }
+    .recipe0,
+    .recipe1,
+    .recipe2 {
+      h3 {
+        font-size: 20px;
+      }
+      img {
+        width: 30vw;
+        height: 250px;
+        margin-top: 5vh;
+      }
+    }
+  }
+
+  .all-recipes {
+    .all-recipes-sort select {
+      width: 30vw;
+    }
+    .all-recipes-search input {
+      width: 40vw;
+    }
+    .all-recipes-title-check {
+      padding: 15px;
+    }
+  }
+  #all-recipes-list,
+  #searched-recipes-list {
+    justify-content: center;
+  }
+  .recipe-title-ingredients p {
+    margin: 30px;
+  }
+  .about {
+    @include flexAndDireciton(column-reverse);
+    align-items: center;
+    p {
+      margin-bottom: 5vh;
+    }
+    img {
+      width: 60vw;
+      margin: auto;
+    }
+  }
+  .login,
+  .register {
+    width: 90% !important;
+  }
+}
+//Screens smaller than 350px
+@media screen and (max-width: 350px) {
+  .header-text {
+    h1 {
+      font-size: 4em;
+      padding: 30vh 40px 20vh 10vw;
+    }
+  }
+  .recent-recipes {
+    #recent-recipes {
+      @include flexAndDireciton(column);
+      .recipe {
+        margin: 0;
+        height: auto;
+        img {
+          height: 250px;
+          width: 70vw;
+        }
+      }
+    }
+    h2 {
+      font-size: 30px;
+    }
+  }
+
+  .recipe-img-title {
+    .recipe-title-ingredients {
+      h1 {
+        margin-left: auto;
+        font-size: 60px !important;
+      }
+      p {
+        margin-left: auto;
+      }
+    }
+  }
+  .recipe-description h2 {
+    font-size: 40px !important;
+  }
+  svg {
+    width: 130% !important;
+  }
+  .footer-wave svg {
+    width: 100% !important;
+  }
+}

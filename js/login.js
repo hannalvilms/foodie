@@ -1,0 +1,1 @@
+completedMobileMenu('login-footer', 'login-header', false);

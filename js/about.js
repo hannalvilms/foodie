@@ -1,0 +1,1 @@
+completedMobileMenu('about-footer', 'about-header');

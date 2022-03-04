@@ -1,0 +1,87 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./src/styles/style.css" />
+    <link rel="stylesheet" href="./src/styles/dist/hamburgers.css" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+    <title>Foodie</title>
+    <link rel="icon" type="image/x-icon" href="./media/favicon.ico" />
+  </head>
+  <body>
+    <div class="header">
+      <video id="background-video" autoplay loop muted>
+        <source src="./media/header.mp4" type="video/mp4" />
+      </video>
+      <div id="home-nav"></div>
+      <div class="header-text">
+        <h1>What should we eat tonight?</h1>
+      </div>
+      <svg
+        class="wave"
+        viewBox="0 0 500 150"
+        preserveAspectRatio="none"
+        style="height: 100%; width: 100%"
+      >
+        <path
+          d="M0.00,49.98 C203.72,-92.25 277.64,147.55 501.12,120.89 L500.00,150.00 L0.00,150.00 Z"
+          style="stroke: none"
+        ></path>
+      </svg>
+    </div>
+    <div class="recent-recipes">
+      <div class="recent-title">
+        <h2>Recently added</h2>
+      </div>
+      <div class="container">
+        <div class="row">
+          <div id="recent-recipes"></div>
+        </div>
+      </div>
+      <div class="footer-wave" id="index-footer"></div>
+    </div>
+  </body>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="./js/consts.js"></script>
+  <script src="./js/jquery-consts.js"></script>
+  <script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+    crossorigin="anonymous"
+  ></script>
+  <script type="module">
+    // Import the functions you need from the SDKs you need
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.7/firebase-app.js";
+    import {
+      getDatabase,
+      set,
+      update,
+      ref,
+    } from "https://www.gstatic.com/firebasejs/9.6.7/firebase-database.js";
+    import {
+      getFirestore,
+      collection,
+      orderBy,
+      getDocs,
+      query,
+      onSnapshot,
+      limit,
+    } from "https://www.gstatic.com/firebasejs/9.6.7/firebase-firestore.js";
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const database = getDatabase(app);
+    const db = getFirestore();
+    const recipesRef = collection(db, "recipes");
+    const q = query(recipesRef, limit(3), orderBy("Added", "desc"));
+    onSnapshot(q, (snapshot) => {
+      recipesToPage(q, snapshot);
+    });
+  </script>
+  <script src="./js/index.js"></script>
+</html>
