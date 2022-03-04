@@ -132,6 +132,7 @@ nav {
   position: absolute;
   width: 100vw;
   padding: 40px;
+  align-items: center;
 }
 .menu-items {
   display: flex;
@@ -156,8 +157,10 @@ nav {
 }
 .mobile-nav {
   padding: 0 !important;
-  h3 {
-    padding: 40px;
+  align-items: baseline;
+  a {
+    padding: 30px;
+    position: absolute;
   }
 }
 .hamburger-inner,

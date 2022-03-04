@@ -99,6 +99,9 @@ nav {
   position: absolute;
   width: 100vw;
   padding: 40px;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 .menu-items {
@@ -131,10 +134,14 @@ nav {
 
 .mobile-nav {
   padding: 0 !important;
+  -webkit-box-align: baseline;
+      -ms-flex-align: baseline;
+          align-items: baseline;
 }
 
-.mobile-nav h3 {
-  padding: 40px;
+.mobile-nav a {
+  padding: 30px;
+  position: absolute;
 }
 
 .hamburger-inner,

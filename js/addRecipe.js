@@ -107,7 +107,7 @@ function imageProgress(
 }
 
 //logout
-function logout(signOut, auth) {
+function logOut(signOut, auth) {
   signOut(auth)
     .then(() => {
       // Sign-out successful.
