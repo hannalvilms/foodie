@@ -37,6 +37,10 @@ var input = document.createElement("input");
 input.type = "file";
 input.onchange = (e) => {
   files = e.target.files;
+  var extention = GetExtensionName(files[0]);
+  var name = GetFileName(files[0]);
+  namebox.value = name
+  extlab.innerHTML = extention
   reader.readAsDataURL(files[0]);
 };
 
