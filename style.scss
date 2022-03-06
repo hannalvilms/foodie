@@ -655,8 +655,8 @@ input[type="checkbox"]:checked::before {
       padding-top: 7px !important;
     }
     input {
-      padding-left: 10px !important;
-      padding-top: 6px !important;
+      padding-left: 10px;
+      padding-top: 6px;
     }
     input[type="checkbox"] {
       padding: 0 !important;

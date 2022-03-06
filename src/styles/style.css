@@ -1034,8 +1034,8 @@ input[type="checkbox"]:checked::before {
     padding-top: 7px !important;
   }
   .all-recipes input {
-    padding-left: 10px !important;
-    padding-top: 6px !important;
+    padding-left: 10px;
+    padding-top: 6px;
   }
   .all-recipes input[type="checkbox"] {
     padding: 0 !important;
