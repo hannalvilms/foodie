@@ -76,10 +76,15 @@ $borderRadius: 5px;
   box-shadow: $lightShadow;
   outline: none;
 }
+@mixin recentRecipesWHMT($width, $height, $marginTop) {
+  width: $width;
+  height: $height;
+  margin-top: $marginTop;
+}
 @mixin recentRecipesWHM($width, $height, $margin) {
   width: $width;
   height: $height;
-  margin-top: $margin;
+  margin: $margin;
 }
 .to-fade-in {
   opacity: 0;
@@ -250,13 +255,13 @@ nav {
   }
 }
 .recipe0 img {
-  @include recentRecipesWHM(300px, 400px, 15vh);
+  @include recentRecipesWHMT(300px, 400px, 15vh);
 }
 .recipe1 img {
-  @include recentRecipesWHM(300px, 400px, 28vh);
+  @include recentRecipesWHMT(300px, 400px, 28vh);
 }
 .recipe2 img {
-  @include recentRecipesWHM(400px, 600px, -3vh);
+  @include recentRecipesWHMT(400px, 600px, -3vh);
 }
 //Waves
 .wave {
@@ -601,13 +606,13 @@ input[type="checkbox"]:checked::before {
 }
 @media screen and (max-width: 1200px) {
   .recipe0 img {
-    @include recentRecipesWHM(22vw, 350px, 10vh);
+    @include recentRecipesWHMT(22vw, 350px, 10vh);
   }
   .recipe1 img {
-    @include recentRecipesWHM(22vw, 350px, 25vh);
+    @include recentRecipesWHMT(22vw, 350px, 25vh);
   }
   .recipe2 img {
-    @include recentRecipesWHM(30vw, 500px, -3vh);
+    @include recentRecipesWHMT(30vw, 500px, -3vh);
   }
   #all-recipes-list,
   #searched-recipes-list {
@@ -717,7 +722,7 @@ input[type="checkbox"]:checked::before {
     @include recentRecipesWHM(22vw, 250px, 20vh 5px 0);
   }
   .recipe2 img {
-    @include recentRecipesWHM(30vw, 350px, 2vh);
+    @include recentRecipesWHMT(30vw, 350px, 2vh);
   }
   .recipe0,
   .recipe1,

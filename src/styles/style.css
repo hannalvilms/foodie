@@ -1047,17 +1047,17 @@ input[type="checkbox"]:checked::before {
   .recipe0 img {
     width: 22vw;
     height: 300px;
-    margin-top: 10vh 5px 0;
+    margin: 10vh 5px 0;
   }
   .recipe1 img {
     width: 22vw;
     height: 300px;
-    margin-top: 25vh 5px 0;
+    margin: 25vh 5px 0;
   }
   .recipe2 img {
     width: 30vw;
     height: 400px;
-    margin-top: 3vh 5px 0;
+    margin: 3vh 5px 0;
   }
   #all-recipes-list .recipe img,
   #all-recipes-list .recipe h3,
@@ -1093,12 +1093,12 @@ input[type="checkbox"]:checked::before {
   .recipe0 img {
     width: 22vw;
     height: 250px;
-    margin-top: 5vh 5px 0;
+    margin: 5vh 5px 0;
   }
   .recipe1 img {
     width: 22vw;
     height: 250px;
-    margin-top: 20vh 5px 0;
+    margin: 20vh 5px 0;
   }
   .recipe2 img {
     width: 30vw;
