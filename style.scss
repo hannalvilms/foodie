@@ -68,12 +68,18 @@ $borderRadius: 5px;
 @mixin imgWidthBorderRadius($width) {
   border-radius: $borderRadius !important;
   width: $width;
+  object-fit: cover;
 }
 @mixin inputBorders() {
   border: none;
   border-radius: $borderRadius;
   box-shadow: $lightShadow;
   outline: none;
+}
+@mixin recentRecipesWHM($width, $height, $margin) {
+  width: $width;
+  height: $height;
+  margin: $margin;
 }
 .to-fade-in {
   opacity: 0;
@@ -184,6 +190,8 @@ nav {
     font-family: $secondaryFont;
     color: $text !important;
     text-decoration: none;
+    position: relative !important;
+    padding: 10px;
   }
 }
 #search.fade {
@@ -212,7 +220,7 @@ nav {
   justify-content: space-around;
   text-align: center;
   width: 100%;
-  margin: 5vh auto 60vh;
+  margin: 15vh auto 60vh;
 }
 .recent-recipes {
   width: 100vw;
@@ -242,19 +250,13 @@ nav {
   }
 }
 .recipe0 img {
-  width: 300px;
-  height: 400px;
-  margin-top: 15vh;
+  @include recentRecipesWHM(300px, 400px, 15vh);
 }
 .recipe1 img {
-  width: 300px;
-  height: 400px;
-  margin-top: 28vh;
+  @include recentRecipesWHM(300px, 400px, 28vh);
 }
 .recipe2 img {
-  width: 400px;
-  height: 600px;
-  margin-top: -3vh;
+  @include recentRecipesWHM(400px, 600px, -3vh);
 }
 //Waves
 .wave {
@@ -339,17 +341,18 @@ nav {
   .add-recipe-title {
     @include flexAndDireciton(column);
     padding-bottom: 30px;
+  }  
+  .add-recipe-checkboxs {
+    @include flexAndDireciton(row);
+    justify-content: space-between;
   }
   .add-recipe-checkbox {
     @include flexAndDireciton(row);
     align-items: center;
     label {
-      padding-right: 10px;
+      padding-right: 2px;
+      padding-left: 10px;
     }
-  }
-  .add-recipe-checkboxs {
-    @include flexAndDireciton(row);
-    justify-content: space-between;
   }
   button:first-of-type {
     margin-top: 0 !important;
@@ -422,12 +425,11 @@ nav {
   @include flexAndDireciton(row);
   flex-wrap: wrap;
   width: 100%;
-  margin: 10vh auto;
+  margin: 5vh auto;
   .recipe {
     img {
       @include imgWidthBorderRadius(90%);
       height: 100%;
-      object-fit: cover;
     }
     h3 {
       @include mainFontAndColor(auto);
@@ -465,8 +467,8 @@ nav {
     @include flexAndDireciton(row);
     align-items: center;
     p {
-      margin-bottom: 0;
       @include mainFontAndColor(30px);
+      margin-bottom: 0;
       margin-right: 5px;
     }
   }
@@ -492,12 +494,11 @@ nav {
       display: none;
     }
     button.shown {
+      @include inputBorders();
       height: 30px;
       width: 40px;
-      border: none;
-      border-radius: 10px;
       margin-left: 10px;
-      color: #86765f;
+      color: $placeholder;
       font-size: 30px;
       padding: 0 0 5px 0;
       display: flex;
@@ -515,12 +516,18 @@ nav {
     @include flexAndDireciton(column);
     justify-content: center;
     width: 55%;
+    .add-recipe-checkbox:first-of-type {
+      label {
+        padding-left: 0 !important;
+      }
+    }
     .add-recipe-checkbox {
       @include flexAndDireciton(row);
       align-items: center;
       label {
-        @include mainFontAndColor(20px);
-        padding-right: 10px;
+        @include mainFontAndColor(17px);
+        padding-right: 7px;
+        padding-left: 10px;
       }
       input {
         @include inputBorders();
@@ -591,19 +598,22 @@ input[type="checkbox"]:checked::before {
 }
 @media screen and (max-width: 1200px) {
   .recipe0 img {
-    width: 22vw;
-    height: 350px;
-    margin-top: 10vh;
+    @include recentRecipesWHM(22vw, 350px, 10vh);
   }
   .recipe1 img {
-    width: 22vw;
-    height: 350px;
-    margin-top: 25vh;
+    @include recentRecipesWHM(22vw, 350px, 25vh);
   }
   .recipe2 img {
-    width: 30vw;
-    height: 500px;
-    margin-top: -3vh;
+    @include recentRecipesWHM(30vw, 500px, -3vh);
+  }
+  #all-recipes-list,
+  #searched-recipes-list {
+    .recipe {
+      img,
+      h3 {
+        width: 300px;
+      }
+    }
   }
 }
 //Screens smaller than 991px
@@ -615,7 +625,6 @@ input[type="checkbox"]:checked::before {
     margin: auto auto 40vh;
   }
   .recent-recipes {
-    min-height: 70vh;
     h2 {
       font-size: 2.5em;
       width: 200px;
@@ -624,6 +633,21 @@ input[type="checkbox"]:checked::before {
   }
 
   .all-recipes {
+    h1 {
+      font-size: 80px;
+    }
+    .all-recipes-title-check {
+      padding-left: 15px;
+    }
+    .all-recipes-sorting {
+      width: 100%;
+      select {
+        width: 100%;
+      }
+      #recipe-search {
+        width: 100%;
+      }
+    }
     select,
     input::placeholder {
       font-size: 17px !important;
@@ -634,21 +658,27 @@ input[type="checkbox"]:checked::before {
       padding-left: 10px !important;
       padding-top: 6px !important;
     }
+    input[type="checkbox"] {
+      padding: 0 !important;
+    }
   }
   .recipe0 img {
-    width: 22vw;
-    height: 300px;
-    margin: 10vh 5px 0;
+    @include recentRecipesWHM(22vw, 300px, 10vh 5px 0);
   }
   .recipe1 img {
-    width: 22vw;
-    height: 300px;
-    margin: 25vh 5px 0;
+    @include recentRecipesWHM(22vw, 300px, 25vh 5px 0);
   }
   .recipe2 img {
-    width: 30vw;
-    height: 400px;
-    margin: 3vh 5px 0;
+    @include recentRecipesWHM(30vw, 400px, 3vh 5px 0);
+  }
+  #all-recipes-list,
+  #searched-recipes-list {
+    .recipe {
+      img,
+      h3 {
+        width: 220px;
+      }
+    }
   }
   .recipe-img-title {
     h1 {
@@ -678,19 +708,13 @@ input[type="checkbox"]:checked::before {
     margin: auto auto 2vh;
   }
   .recipe0 img {
-    width: 22vw;
-    height: 250px;
-    margin: 5vh 5px 0;
+    @include recentRecipesWHM(22vw, 250px, 5vh 5px 0);
   }
   .recipe1 img {
-    width: 22vw;
-    height: 250px;
-    margin: 20vh 5px 0;
+    @include recentRecipesWHM(22vw, 250px, 20vh 5px 0);
   }
   .recipe2 img {
-    width: 30vw;
-    height: 350px;
-    margin-top: 2vh;
+    @include recentRecipesWHM(30vw, 350px, 2vh);
   }
   .recipe0,
   .recipe1,
@@ -706,14 +730,26 @@ input[type="checkbox"]:checked::before {
     .all-recipes-sorting {
       width: 100%;
     }
-    .all-recipes-sort select {
-      width: 20vw;
+    .all-recipes-sort {
+      margin-right: 0;
+      p {
+        font-size: 20px;
+      }
+      select {
+        width: 20vw;
+      }
     }
   }
 
   #all-recipes-list,
   #searched-recipes-list {
     margin: 5vh auto;
+    .recipe {
+      img,
+      h3 {
+        width: 250px;
+      }
+    }
   }
   .recipe-img-title {
     @include flexAndDireciton(column-reverse);
@@ -781,10 +817,21 @@ input[type="checkbox"]:checked::before {
       width: 30vw;
     }
     .all-recipes-search input {
-      width: 40vw;
+      margin-top: 20px;
+      width: 70vw !important;
     }
     .all-recipes-title-check {
       padding: 15px;
+    }
+    .add-recipe-checkboxs {
+      flex-wrap: wrap;
+      justify-content: flex-start !important;
+      label {
+        padding-left: 0 !important;
+      }
+      input {
+        margin-right: 10px;
+      }
     }
   }
   #all-recipes-list,
@@ -803,6 +850,10 @@ input[type="checkbox"]:checked::before {
     img {
       width: 60vw;
       margin: auto;
+    }
+    img,
+    h3 {
+      width: 350px;
     }
   }
   .login,
@@ -834,7 +885,18 @@ input[type="checkbox"]:checked::before {
       font-size: 30px;
     }
   }
-
+  .all-recipes {
+    h1 {
+      font-size: 70px;
+    }
+  }
+  #all-recipes-list,
+  #searched-recipes-list {
+    img,
+    h3 {
+      width: 300px;
+    }
+  }
   .recipe-img-title {
     .recipe-title-ingredients {
       h1 {

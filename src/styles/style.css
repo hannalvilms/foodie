@@ -176,6 +176,8 @@ nav {
   font-family: "Holipop";
   color: #f2f2f2 !important;
   text-decoration: none;
+  position: relative !important;
+  padding: 10px;
 }
 
 #search.fade {
@@ -245,7 +247,7 @@ nav {
       justify-content: space-around;
   text-align: center;
   width: 100%;
-  margin: 5vh auto 60vh;
+  margin: 15vh auto 60vh;
 }
 
 .recent-recipes {
@@ -288,19 +290,19 @@ nav {
 .recipe0 img {
   width: 300px;
   height: 400px;
-  margin-top: 15vh;
+  margin: 15vh;
 }
 
 .recipe1 img {
   width: 300px;
   height: 400px;
-  margin-top: 28vh;
+  margin: 28vh;
 }
 
 .recipe2 img {
   width: 400px;
   height: 600px;
-  margin-top: -3vh;
+  margin: -3vh;
 }
 
 .wave {
@@ -425,6 +427,8 @@ nav {
 .add-recipe .image img {
   border-radius: 5px !important;
   width: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 
 .add-recipe h3 {
@@ -482,6 +486,19 @@ nav {
   padding-bottom: 30px;
 }
 
+.add-recipe .add-recipe-checkboxs {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
 .add-recipe .add-recipe-checkbox {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -496,20 +513,8 @@ nav {
 }
 
 .add-recipe .add-recipe-checkbox label {
-  padding-right: 10px;
-}
-
-.add-recipe .add-recipe-checkboxs {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+  padding-right: 2px;
+  padding-left: 10px;
 }
 
 .add-recipe button:first-of-type {
@@ -626,16 +631,16 @@ nav {
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
   width: 100%;
-  margin: 10vh auto;
+  margin: 5vh auto;
 }
 
 #all-recipes-list .recipe img,
 #searched-recipes-list .recipe img {
   border-radius: 5px !important;
   width: 90%;
-  height: 100%;
   -o-object-fit: cover;
      object-fit: cover;
+  height: 100%;
 }
 
 #all-recipes-list .recipe h3,
@@ -710,10 +715,10 @@ nav {
 
 .all-recipes .all-recipes-sort p,
 .all-recipes .all-recipes-search p {
-  margin-bottom: 0;
   font-size: 30px;
   font-family: "Golden";
   color: #f2f2f2;
+  margin-bottom: 0;
   margin-right: 5px;
 }
 
@@ -783,10 +788,13 @@ nav {
 }
 
 .all-recipes .all-recipes-search button.shown {
+  border: none;
+  border-radius: 5px;
+  -webkit-box-shadow: 0 0 7px 0 rgba(77, 77, 77, 0.3);
+          box-shadow: 0 0 7px 0 rgba(77, 77, 77, 0.3);
+  outline: none;
   height: 30px;
   width: 40px;
-  border: none;
-  border-radius: 10px;
   margin-left: 10px;
   color: #86765f;
   font-size: 30px;
@@ -831,6 +839,10 @@ nav {
   width: 55%;
 }
 
+.all-recipes .all-recipes-sorting .add-recipe-checkbox:first-of-type label {
+  padding-left: 0 !important;
+}
+
 .all-recipes .all-recipes-sorting .add-recipe-checkbox {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -845,10 +857,11 @@ nav {
 }
 
 .all-recipes .all-recipes-sorting .add-recipe-checkbox label {
-  font-size: 20px;
+  font-size: 17px;
   font-family: "Golden";
   color: #f2f2f2;
-  padding-right: 10px;
+  padding-right: 7px;
+  padding-left: 10px;
 }
 
 .all-recipes .all-recipes-sorting .add-recipe-checkbox input {
@@ -902,6 +915,8 @@ nav {
 .about img {
   border-radius: 5px !important;
   width: 40vh;
+  -o-object-fit: cover;
+     object-fit: cover;
   margin-right: 5vh;
 }
 
@@ -947,17 +962,23 @@ input[type="checkbox"]:checked::before {
   .recipe0 img {
     width: 22vw;
     height: 350px;
-    margin-top: 10vh;
+    margin: 10vh;
   }
   .recipe1 img {
     width: 22vw;
     height: 350px;
-    margin-top: 25vh;
+    margin: 25vh;
   }
   .recipe2 img {
     width: 30vw;
     height: 500px;
-    margin-top: -3vh;
+    margin: -3vh;
+  }
+  #all-recipes-list .recipe img,
+  #all-recipes-list .recipe h3,
+  #searched-recipes-list .recipe img,
+  #searched-recipes-list .recipe h3 {
+    width: 300px;
   }
 }
 
@@ -968,13 +989,25 @@ input[type="checkbox"]:checked::before {
   #recent-recipes {
     margin: auto auto 40vh;
   }
-  .recent-recipes {
-    min-height: 70vh;
-  }
   .recent-recipes h2 {
     font-size: 2.5em;
     width: 200px;
     margin-left: 9%;
+  }
+  .all-recipes h1 {
+    font-size: 80px;
+  }
+  .all-recipes .all-recipes-title-check {
+    padding-left: 15px;
+  }
+  .all-recipes .all-recipes-sorting {
+    width: 100%;
+  }
+  .all-recipes .all-recipes-sorting select {
+    width: 100%;
+  }
+  .all-recipes .all-recipes-sorting #recipe-search {
+    width: 100%;
   }
   .all-recipes select,
   .all-recipes input::-webkit-input-placeholder {
@@ -1004,6 +1037,9 @@ input[type="checkbox"]:checked::before {
     padding-left: 10px !important;
     padding-top: 6px !important;
   }
+  .all-recipes input[type="checkbox"] {
+    padding: 0 !important;
+  }
   .recipe0 img {
     width: 22vw;
     height: 300px;
@@ -1018,6 +1054,12 @@ input[type="checkbox"]:checked::before {
     width: 30vw;
     height: 400px;
     margin: 3vh 5px 0;
+  }
+  #all-recipes-list .recipe img,
+  #all-recipes-list .recipe h3,
+  #searched-recipes-list .recipe img,
+  #searched-recipes-list .recipe h3 {
+    width: 220px;
   }
   .recipe-img-title h1 {
     font-size: 60px;
@@ -1057,7 +1099,7 @@ input[type="checkbox"]:checked::before {
   .recipe2 img {
     width: 30vw;
     height: 350px;
-    margin-top: 2vh;
+    margin: 2vh;
   }
   .recipe0 h3,
   .recipe1 h3,
@@ -1076,12 +1118,24 @@ input[type="checkbox"]:checked::before {
   .all-recipes .all-recipes-sorting {
     width: 100%;
   }
+  .all-recipes .all-recipes-sort {
+    margin-right: 0;
+  }
+  .all-recipes .all-recipes-sort p {
+    font-size: 20px;
+  }
   .all-recipes .all-recipes-sort select {
     width: 20vw;
   }
   #all-recipes-list,
   #searched-recipes-list {
     margin: 5vh auto;
+  }
+  #all-recipes-list .recipe img,
+  #all-recipes-list .recipe h3,
+  #searched-recipes-list .recipe img,
+  #searched-recipes-list .recipe h3 {
+    width: 250px;
   }
   .recipe-img-title {
     display: -webkit-box;
@@ -1157,10 +1211,24 @@ input[type="checkbox"]:checked::before {
     width: 30vw;
   }
   .all-recipes .all-recipes-search input {
-    width: 40vw;
+    margin-top: 20px;
+    width: 70vw !important;
   }
   .all-recipes .all-recipes-title-check {
     padding: 15px;
+  }
+  .all-recipes .add-recipe-checkboxs {
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+    -webkit-box-pack: start !important;
+        -ms-flex-pack: start !important;
+            justify-content: flex-start !important;
+  }
+  .all-recipes .add-recipe-checkboxs label {
+    padding-left: 0 !important;
+  }
+  .all-recipes .add-recipe-checkboxs input {
+    margin-right: 10px;
   }
   #all-recipes-list,
   #searched-recipes-list {
@@ -1189,6 +1257,10 @@ input[type="checkbox"]:checked::before {
   .about img {
     width: 60vw;
     margin: auto;
+  }
+  .about img,
+  .about h3 {
+    width: 350px;
   }
   .login,
   .register {
@@ -1220,6 +1292,15 @@ input[type="checkbox"]:checked::before {
   }
   .recent-recipes h2 {
     font-size: 30px;
+  }
+  .all-recipes h1 {
+    font-size: 70px;
+  }
+  #all-recipes-list img,
+  #all-recipes-list h3,
+  #searched-recipes-list img,
+  #searched-recipes-list h3 {
+    width: 300px;
   }
   .recipe-img-title .recipe-title-ingredients h1 {
     margin-left: auto;

@@ -21,10 +21,10 @@
       <div class="row">
         <div class="all-recipes">
           <div class="all-recipes-title-check row">
-            <h1 class="col-4">All recipes</h1>
-            <div class="all-recipes-sorting col-8">
+            <h1 class="col-lg-4 col-md-12 col-sm-12">All recipes</h1>
+            <div class="all-recipes-sorting col-lg-8 col-md-12 col-sm-12">
               <div class="all-recipes-sort-search row">
-                <div class="all-recipes-sort col-4">
+                <div class="all-recipes-sort col-lg-4 col-md-4 col-sm-6">
                   <p>Sort</p>
                   <select id="sort" name="sort">
                     <option value="" selected disabled hidden>Newest</option>
@@ -33,9 +33,31 @@
                     <option value="Z-A">Z-A</option>
                   </select>
                 </div>
-                <div class="all-recipes-search col-7">
+                <div class="all-recipes-search col-lg-7 col-md-7 col-sm-6">
                   <input placeholder="Search" id="recipe-search" />
                   <button id="remove-search" class="none">×</button>
+                </div>
+                <div class="add-recipe-checkboxs">
+                  <div class="add-recipe-checkbox">
+                    <label>Vegan</label>
+                    <input id="recipe-vegan" type="checkbox" />
+                  </div>
+                  <div class="add-recipe-checkbox">
+                    <label>Gluten Free</label>
+                    <input id="recipe-gluten-free" type="checkbox" />
+                  </div>
+                  <div class="add-recipe-checkbox">
+                    <label>Dairy free</label>
+                    <input id="recipe-dairy-free" type="checkbox" />
+                  </div>
+                  <div class="add-recipe-checkbox">
+                    <label>LCHF</label>
+                    <input id="recipe-lchf" type="checkbox" />
+                  </div>
+                  <div class="add-recipe-checkbox">
+                    <label>Paleo</label>
+                    <input id="recipe-paleo" type="checkbox" />
+                  </div>
                 </div>
               </div>
             </div>
@@ -80,6 +102,12 @@
     let q = query(recipesRef, orderBy("Added", "desc"));
     let search = document.getElementById("recipe-search");
     let sort = document.getElementById("sort");
+    
+    let vegan = document.getElementById("recipe-vegan");
+    let dairyFree = document.getElementById("recipe-dairy-free");
+    let glutenFree = document.getElementById("recipe-gluten-free");
+    let lchf = document.getElementById("recipe-lchf");
+    let paleo = document.getElementById("recipe-paleo");
 
     function data(q) {
       onSnapshot(q, (snapshot) => {
@@ -88,6 +116,106 @@
     }
     //For inital page load
     data(query(recipesRef, orderBy("Added", "desc")));
+    let a;
+    dairyFree.addEventListener("input", function (e) {
+      sortRecipesByCheckbox()
+      console.log("dairy")
+    })
+    lchf.addEventListener("input", function (e) {
+      sortRecipesByCheckbox()
+      console.log("lchf")
+
+    })
+    paleo.addEventListener("input", function (e) {
+      sortRecipesByCheckbox()
+      console.log("paleo")
+
+    })
+    vegan.addEventListener("input", function (e) {
+      sortRecipesByCheckbox()
+      console.log("vege")
+
+    });
+    glutenFree.addEventListener("input", function (e) {
+      sortRecipesByCheckbox()
+      console.log("gluten")
+
+    });
+    function sortRecipesByCheckbox() {
+      if(vegan.checked && glutenFree.checked && dairyFree.checked && lchf.checked && paleo.checked) {
+        data(query(recipesRef, where("vegan", "==", true), where("glutenFree", "==", true), where("dairyFree", "==", true), where("lchf", "==", true), where("paleo", "==", true)))
+      } 
+
+      else if (vegan.checked && glutenFree.checked && dairyFree.checked && lchf.checked ) {
+        data(query(recipesRef, where("vegan", "==", true), where("glutenFree", "==", true), where("dairyFree", "==", true), where("lchf", "==", true)))
+      }
+      else if (glutenFree.checked && dairyFree.checked && lchf.checked && paleo.checked) {
+        data(query(recipesRef, where("glutenFree", "==", true), where("dairyFree", "==", true), where("lchf", "==", true), where("paleo", "==", true)))
+      }
+
+      else if (vegan.checked && glutenFree.checked && dairyFree.checked) {
+        data(query(recipesRef, where("vegan", "==", true), where("glutenFree", "==", true)), where("dairyFree", "==", true))
+      }
+      else if (glutenFree.checked && dairyFree.checked && lchf.checked) {
+        data(query(recipesRef, where("glutenFree", "==", true), where("dairyFree", "==", true), where("lchf", "==", true)))
+      }
+      else if (dairyFree.checked && lchf.checked && paleo.checked) {
+        data(query(recipesRef, where("dairyFree", "==", true), where("lchf", "==", true), where("paleo", "==", true)))
+      }
+
+      else if (vegan.checked && glutenFree.checked) {
+        data(query(recipesRef, where("vegan", "==", true), where("glutenFree", "==", true)))
+      }
+      else if (vegan.checked && dairyFree.checked) {
+        data(query(recipesRef, where("vegan", "==", true), where("dairyFree", "==", true)))
+      }
+      else if (vegan.checked && lchf.checked) {
+        data(query(recipesRef, where("vegan", "==", true), where("lchf", "==", true)))
+      }
+      else if (vegan.checked && paleo.checked) {
+        data(query(recipesRef, where("vegan", "==", true), where("paleo", "==", true)))
+      }
+
+      else if (glutenFree.checked && dairyFree.checked) {
+        data(query(recipesRef, where("glutenFree", "==", true), where("dairyFree", "==", true)))
+      }
+      else if (glutenFree.checked && lchf.checked) {
+        data(query(recipesRef, where("glutenFree", "==", true), where("lchf", "==", true)))
+      }
+      else if (glutenFree.checked && paleo.checked) {
+        data(query(recipesRef, where("glutenFree", "==", true), where("paleo", "==", true)))
+      }
+
+      else if (dairyFree.checked && lchf.checked) {
+        data(query(recipesRef, where("dairyFree", "==", true), where("lchf", "==", true)))
+      }
+      else if (dairyFree.checked && paleo.checked) {
+        data(query(recipesRef, where("dairyFree", "==", true), where("paleo", "==", true)))
+      }
+
+      else if (lchf.checked && paleo.checked) {
+        data(query(recipesRef, where("lchf", "==", true), where("paleo", "==", true)))
+      }
+
+      else if (vegan.checked) {
+        data(query(recipesRef, where("vegan", "==", true)));
+      } 
+      else if (glutenFree.checked) {
+        data(query(recipesRef, where("glutenFree", "==", true)))
+      } 
+      else if (dairyFree.checked) {
+        data(query(recipesRef, where("dairyFree", "==", true)))
+      } 
+      else if (lchf.checked) {
+        data(query(recipesRef, where("lchf", "==", true)))
+      }
+       else if (paleo.checked) {
+        data(query(recipesRef, where("paleo", "==", true)))
+      }
+      if(!vegan.checked && !glutenFree.checked && !dairyFree.checked && !lchf.checked && !paleo.checked) {
+        data(query(recipesRef, orderBy("Added", "desc")));
+      }
+    }
 
     sort.addEventListener("change", function (e) {
       if (document.getElementById("sort").value === "A-Z") {
