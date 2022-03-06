@@ -116,32 +116,26 @@
     }
     //For inital page load
     data(query(recipesRef, orderBy("Added", "desc")));
-    let a;
+
     dairyFree.addEventListener("input", function (e) {
       sortRecipesByCheckbox()
-      console.log("dairy")
     })
     lchf.addEventListener("input", function (e) {
       sortRecipesByCheckbox()
-      console.log("lchf")
-
     })
     paleo.addEventListener("input", function (e) {
       sortRecipesByCheckbox()
-      console.log("paleo")
-
     })
     vegan.addEventListener("input", function (e) {
       sortRecipesByCheckbox()
-      console.log("vege")
-
     });
     glutenFree.addEventListener("input", function (e) {
       sortRecipesByCheckbox()
-      console.log("gluten")
-
     });
     function sortRecipesByCheckbox() {
+      search.disabled = true;
+      search.value = '';
+
       if(vegan.checked && glutenFree.checked && dairyFree.checked && lchf.checked && paleo.checked) {
         data(query(recipesRef, where("vegan", "==", true), where("glutenFree", "==", true), where("dairyFree", "==", true), where("lchf", "==", true), where("paleo", "==", true)))
       } 
@@ -214,6 +208,8 @@
       }
       if(!vegan.checked && !glutenFree.checked && !dairyFree.checked && !lchf.checked && !paleo.checked) {
         data(query(recipesRef, orderBy("Added", "desc")));
+        search.disabled = false;
+
       }
     }
 
@@ -230,6 +226,21 @@
       onSnapshot(q, (snapshot) => {
         allRecipes(snapshot, search.value);
       });
+      if (vegan.checked) {
+        vegan.checked = false
+      } 
+      if (glutenFree.checked) {
+        glutenFree.checked = false
+      } 
+      if (dairyFree.checked) {
+        dairyFree.checked = false
+      } 
+      if (lchf.checked) {
+        lchf.checked = false
+      }
+      if (paleo.checked) {
+          paleo.checked = false
+      }
     });
   </script>
   <script src="./js/recipes.js"></script>

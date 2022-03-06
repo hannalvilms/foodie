@@ -79,7 +79,7 @@ $borderRadius: 5px;
 @mixin recentRecipesWHM($width, $height, $margin) {
   width: $width;
   height: $height;
-  margin: $margin;
+  margin-top: $margin;
 }
 .to-fade-in {
   opacity: 0;
@@ -489,6 +489,9 @@ nav {
     }
     input::placeholder {
       @include selectInputText();
+    }
+    input:disabled {
+      background-color: #dedede;
     }
     button.none {
       display: none;

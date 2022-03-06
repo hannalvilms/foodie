@@ -2,6 +2,8 @@ completedMobileMenu("all-recipes-footer", "all-recipes-header", false);
 
 //refrences
 let results = document.getElementById("searched-recipes-list");
+let removeSearch = document.getElementById("remove-search");
+let recipeSearch = document.getElementById("recipe-search");
 function allRecipes(snapshot, search_term) {
   let recipes = [];
   snapshot.docs.forEach((doc) => {
@@ -9,19 +11,15 @@ function allRecipes(snapshot, search_term) {
   });
 
   if (sessionStorage.getItem("searchedItem")) {
-    document.getElementById("remove-search").classList.remove("none");
-    document.getElementById("remove-search").classList.add("shown");
+    removeSearch.classList.remove("none");
+    removeSearch.classList.add("shown");
 
-    document.getElementById("recipe-search").value =
-      sessionStorage.getItem("searchedItem");
-    console.log(sessionStorage.getItem("searchedItem"));
+    recipeSearch.value = sessionStorage.getItem("searchedItem");
     showList(recipes, sessionStorage.getItem("searchedItem").toLowerCase());
-    document
-      .getElementById("remove-search")
-      .addEventListener("click", function (e) {
-        document.getElementById("remove-search").classList.remove("shown");
-        document.getElementById("remove-search").classList.add("none");
-        document.getElementById("recipe-search").value = "";
+    removeSearch.addEventListener("click", function (e) {
+        removeSearch.classList.remove("shown");
+        removeSearch.classList.add("none");
+        recipeSearch.value = "";
         sessionStorage.removeItem("searchedItem");
         showList(recipes, search_term.toLowerCase());
       });
